@@ -1,0 +1,63 @@
+header {
+  background: url("images/travel_6.jpg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  height: 300px;
+}
+
+h1{
+text-align: center;
+padding-top: 200px;
+}
+#cities_dropdown{
+ border: 1px solid #CCC;
+ height: 50px;
+ font-size: 20px;
+}
+.user_login{
+text-align: left;
+margin-top: 2em;
+}
+
+#city_description h3{
+    color: #d8222c;
+}
+
+#city_description h5{
+  margin-bottom: 2em;
+}
+
+#categoryResults h4{
+  color: #d8222c;
+}
+
+.btn-group{
+  text-align: center;
+}
+
+.selected_city {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.container{
+  text-align: center;
+}
+
+#attractions_radius{
+  width: 350px;
+  margin: auto;
+  float: none;
+}
+.attraction_description {
+  text-align: justify;
+}
+
+.mtop1 {
+  margin-top: 1em;
+}
+
+.mbottom1 {
+  margin-bottom: 1em;
+}

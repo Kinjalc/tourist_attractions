@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <title>Tourist attractions</title>
+        <link rel="stylesheet" href="app.css">
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+     <div class='container'>
+      <header>
+        <h1>TRAVELOGUE</h1>
+      </header>
+      <div class="user_login">
+        <div class="login">
+          <button id="login_button">Login</button>
+          <button id="register_button">Register</button>
+            <div class="login_user">
+              <input id="email" type="text" value="" placeholder="e-mail">
+              <input id="password" type="password" value="" placeholder="password">
+              <input id="get-token" type="button" value="Login">
+            </div>
+            <div class="register">
+              <input id="name" type="text" value="" placeholder="name">
+              <input id="register_email" type="text" value="" placeholder="e-mail">
+              <input id="register_password" type="password" value="" placeholder="password">
+              <input id="post-token" type="button" value="Register">
+            </div>
+        </div>
+          <div id="welcome">welcome</div>
+      </div>
+
+      <div class='row'>
+        <div class='text-center'>
+          <select id ="cities_dropdown">
+            <option value=0 >Select your city</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="selected_city text-center">
+        <div id="city_description"></div>
+        <div id="get_attractions"></div>
+        <div class="btn-group">
+          <button  id="get_all">all tourist attractions</button>
+          <button class ="categories_button" id="landmark">landmark</button>
+          <button class ="categories_button" id="museum">museum</button>
+          <button class ="categories_button" id="skyline">skyline</button>
+          <button class ="categories_button" id="entertainment">entertainment</button>
+          <button class ="categories_button" id="architecture">architecture</button>
+          <div id = "categoryResults"></div>
+        </div>
+        <div id = "category_results"></div>
+      </div>
+
+      <div class="text-center">
+      <span > Find attractions within 2 miles of : </span>
+      <select id ="attractions_dropdown">
+        <option value=0 >Select the attraction</option>
+      </select>
+      <div id = "attractions_radius"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="app.js"></script>
+
+  </body>
+</html>
