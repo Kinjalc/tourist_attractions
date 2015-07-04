@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604224538) do
+ActiveRecord::Schema.define(version: 20150620230407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,9 @@ ActiveRecord::Schema.define(version: 20150604224538) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.integer  "city_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.float    "reviews_average"
   end
 
   add_index "tourist_attractions", ["city_id"], name: "index_tourist_attractions_on_city_id", using: :btree

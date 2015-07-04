@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_tourist_attraction
   def index
-    @reviews = @tourist_attraction.reviews
+    @reviews = @tourist_attraction.reviews.includes(:user)
     render json: @reviews
   end
 
