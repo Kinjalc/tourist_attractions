@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   $.ajax({
     type: 'GET',
-    url: "http://localhost:3000/cities"
+    url: "https://salty-fortress-4270.herokuapp.com/cities"
   }).done(function(response) {
     response.forEach(function(city) {
       var cityHeader = "<option value ='" + city.id + "'>" + city.name + "</option>"
@@ -19,7 +19,7 @@ $(document).ready(function() {
     var cityId = $(this).val();
     $.ajax({
       type: 'GET',
-      url: "http://localhost:3000/cities/" + cityId
+      url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId
     }).done(function(city) {
       $(".selected_city").attr('id', city.id)
       var cityContent = "<h3><b>" + city.name + ", " + city.state + ", " + city.country + "</b>" + "</h3></br><h5>" + city.description + "</p>"
@@ -27,7 +27,7 @@ $(document).ready(function() {
     });
     $.ajax({
       type: 'GET',
-      url: "http://localhost:3000/cities/" + cityId + "/tourist_attractions"
+      url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
     }).done(function(response) {
       response.forEach(function(attraction) {
         var attractionHeader = "<option value ='" + attraction.id + "'>" + attraction.name + "</option>"
@@ -40,7 +40,7 @@ $(document).ready(function() {
     var attractionsId = $(this).val();
     $.ajax({
       type: 'GET',
-      url: "http://localhost:3000/cities/tourist_attractions/nearby_attractions/" + attractionsId
+      url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
     }).done(function(response) {
       $("#attractions_radius").html('');
       response.filter(function(attr) {
@@ -58,7 +58,7 @@ $(document).ready(function() {
     var categoryName = ($(this)).attr('id');
     $.ajax({
       type: 'GET',
-      url: "http://localhost:3000/cities/" + cityId + "/tourist_attractions"
+      url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
     }).done(function(response) {
       if (categoryName === "get_all") {
         var attractionsContent = "<h4>All tourist attractions</h4>";
@@ -118,7 +118,7 @@ $(document).ready(function() {
       var touristAttrId = $($(this)).data('attrid');
       $.ajax({
         type: 'GET',
-        url: "http://localhost:3000/tourist_attractions/" + touristAttrId
+        url: "https://salty-fortress-4270.herokuapp.com/tourist_attractions/" + touristAttrId
       }).done(function(response) {
         var reviews = '';
         response.forEach(function(review) {
@@ -141,7 +141,7 @@ $(document).ready(function() {
   };
 
   $('#get-token').on('click', function() {
-    $.ajax('http://localhost:3000/login', {
+    $.ajax('https://salty-fortress-4270.herokuapp.com/login', {
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({
@@ -171,7 +171,7 @@ $(document).ready(function() {
 
   $('#post-token').on('click', function() {
     $.ajax({
-      url: 'http://localhost:3000/register',
+      url: 'https://salty-fortress-4270.herokuapp.com/register',
       contentType: 'application/json',
       processData: false,
       data: JSON.stringify({
