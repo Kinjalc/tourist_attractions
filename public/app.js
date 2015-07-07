@@ -34,54 +34,54 @@ $(document).ready(function() {
         $("#attractions_dropdown").append(attractionHeader)
       });
     });
-  });
-
-  $("#attractions_dropdown").on("change", function(e) {
-    var attractionsId = $(this).val();
-    $.ajax({
-      type: 'GET',
-      url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
-    }).done(function(response) {
-      $("#attractions_radius").html('');
-      response.filter(function(attr) {
-        return attr.id.toString() !== attractionsId;
-      }).forEach(function(attraction) {
-        var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
-        $("#attractions_radius").append(attractionRadius)
+    $(".categories_button").on("click", function(e) {
+      var cityId = $(".selected_city").attr('id');
+      var categoryName = ($(this)).attr('id');
+      $.ajax({
+        type: 'GET',
+        url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
+      }).done(function(response) {
+        if (categoryName === "get_all") {
+          var attractionsContent = "<h4>All tourist attractions</h4>";
+          response.forEach(function(attraction) {
+            var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><b>" + attraction.name + "</b></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
+            attractionsContent += attractions;
+          });
+        } else {
+          var attractionsContent = "<h4>" + categoryName + "</h4>";
+          response.forEach(function(attraction) {
+            if (attraction.category.includes(categoryName)) {
+              var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><b>" + attraction.name + "</b></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
+              attractionsContent += attractions;
+            };
+          });
+        };
+        $("#categoryResults").html(attractionsContent);
+        showCityDescription();
+        attachHandlerSubmitReview();
+        $(".attraction_description").hide();
+        attachHandlerGetReviews();
+      });
+    });
+    $("#attractions_dropdown").on("change", function(e) {
+      var attractionsId = $(this).val();
+      $.ajax({
+        type: 'GET',
+        url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
+      }).done(function(response) {
+        $("#attractions_radius").html('');
+        response.filter(function(attr) {
+          return attr.id.toString() !== attractionsId;
+        }).forEach(function(attraction) {
+          var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
+          $("#attractions_radius").append(attractionRadius)
+        });
       });
     });
   });
 
 
-  $(".categories_button").on("click", function(e) {
-    var cityId = $(".selected_city").attr('id');
-    var categoryName = ($(this)).attr('id');
-    $.ajax({
-      type: 'GET',
-      url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
-    }).done(function(response) {
-      if (categoryName === "get_all") {
-        var attractionsContent = "<h4>All tourist attractions</h4>";
-        response.forEach(function(attraction) {
-          var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><b>" + attraction.name + "</b></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
-          attractionsContent += attractions;
-        });
-      } else {
-        var attractionsContent = "<h4>" + categoryName + "</h4>";
-        response.forEach(function(attraction) {
-          if (attraction.category.includes(categoryName)) {
-            var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><b>" + attraction.name + "</b></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
-            attractionsContent += attractions;
-          };
-        });
-      };
-      $("#categoryResults").html(attractionsContent);
-      showCityDescription();
-      attachHandlerSubmitReview();
-      $(".attraction_description").hide();
-      attachHandlerGetReviews();
-    });
-  });
+
 
   function attachHandlerSubmitReview() {
     $(".post_submit").on("click", function(e) {
