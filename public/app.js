@@ -17,6 +17,9 @@ $(document).ready(function() {
 
   $("#cities_dropdown").on("change", function(e) {
     var cityId = $(this).val();
+    $("#categoryResults").hide();
+    $("#attractions_radius").hide();
+    var cityId = $(this).val();
     $.ajax({
       type: 'GET',
       url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId
