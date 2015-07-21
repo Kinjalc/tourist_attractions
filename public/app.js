@@ -42,6 +42,7 @@ $(document).ready(function() {
       });
     });
     $(".categories_button").on("click", function(e) {
+      $("#categoryResults").show();
       var cityId = $(".selected_city").attr('id');
       var categoryName = ($(this)).attr('id');
       $.ajax({
