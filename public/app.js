@@ -4,7 +4,7 @@ $(document).ready(function() {
   var name = "welcome " + localStorage.name;
   $("#welcome").html(name);
 
-
+  //Gets the list of cities from database
   $.ajax({
     type: 'GET',
     url: "https://salty-fortress-4270.herokuapp.com/cities"
@@ -14,12 +14,13 @@ $(document).ready(function() {
       $("#cities_dropdown").append(cityHeader)
     });
   });
-
+  //select the city from the dropdown
   $("#cities_dropdown").on("change", function(e) {
     var cityId = $(this).val();
     $("#categoryResults").hide();
     $("#attractions_radius").hide();
     var cityId = $(this).val();
+    //get the selected city details
     $.ajax({
       type: 'GET',
       url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId
@@ -28,6 +29,7 @@ $(document).ready(function() {
       var cityContent = "<h3><b>" + city.name + ", " + city.state + ", " + city.country + "</b>" + "</h3></br><h5>" + city.description + "</p>"
       $("#city_description").html(cityContent)
     });
+    //get all the attractions for the selected city in the attractions dropdown
     $.ajax({
       type: 'GET',
       url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
@@ -41,6 +43,7 @@ $(document).ready(function() {
         $("#attractions_dropdown").html(attractionDropdown)
       });
     });
+    //get attractions for chosen category
     $(".categories_button").on("click", function(e) {
       $("#categoryResults").show();
       var cityId = $(".selected_city").attr('id');
@@ -64,13 +67,16 @@ $(document).ready(function() {
             };
           });
         };
+        //show the results in the categoryResults div
         $("#categoryResults").html(attractionsContent);
         showCityDescription();
+        //call the attachHandlerSubmitReview function once attraction results are displayed so the a click handler event can be attached to the DOM element which we created above
         attachHandlerSubmitReview();
         $(".attraction_description").hide();
         attachHandlerGetReviews();
       });
     });
+    //to find the attractions in a particular radius
     $("#attractions_dropdown").on("change", function(e) {
       var attractionsId = $(this).val();
       $.ajax({
@@ -80,6 +86,7 @@ $(document).ready(function() {
         $("#attractions_radius").show();
         $("#attractions_radius").html('');
         response.filter(function(attr) {
+          //removes the attraction selected from the result list
           return attr.id.toString() !== attractionsId;
         }).forEach(function(attraction) {
           var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
@@ -90,23 +97,23 @@ $(document).ready(function() {
   });
 
 
-
+  /// attaches click handler to the submit review button
 
   function attachHandlerSubmitReview() {
     $(".post_submit").on("click", function(e) {
       var attractionIdReview = $($(this)).data('attraction');
       var rating = $(".rating[data-val='" + attractionIdReview + "']").val();
-      if (rating <= 5) {
+      if (rating <= 5 && localStorage.userId) {
         var review = {
           comments: $(".comments[data-val='" + attractionIdReview + "']").val(),
           rating: $(".rating[data-val='" + attractionIdReview + "']").val(),
           tourist_attraction_id: attractionIdReview,
           user_id: localStorage.userId
         };
-        //make an ajax request
+        //make an ajax request to submit the review
         $.ajax({
           type: 'POST',
-          url: "http://localhost:3000/reviews/" + attractionIdReview,
+          url: "https://salty-fortress-4270.herokuapp.com/reviews/" + attractionIdReview,
           header: localStorage.token,
           data: {
             review: review
