@@ -17,9 +17,11 @@ class TouristAttractionsController < ApplicationController
 
   def nearby_attractions
     @tourist_attraction = TouristAttraction.find(params[:id])
+    @attr_radius = params[:rad].to_i
     @origin = [@tourist_attraction.latitude,@tourist_attraction.longitude]
     logger.info @origin
-    @nearby_attr = TouristAttraction.find_nearby_attractions @origin
+    logger.info @attr_radius
+    @nearby_attr = TouristAttraction.find_nearby_attractions(@origin,@attr_radius)
     render json: @nearby_attr
   end
 

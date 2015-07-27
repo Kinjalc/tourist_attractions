@@ -4,8 +4,8 @@ class TouristAttraction < ActiveRecord::Base
   acts_as_mappable :lat_column_name => :latitude,
                    :lng_column_name => :longitude
 
-  def self.find_nearby_attractions origin
+  def self.find_nearby_attractions (origin, rad)
     #this is where we do the calculations and return then array of nearby attractions
-    TouristAttraction.within(2, :origin => origin)
+    TouristAttraction.within(rad, :origin => origin)
   end
 end

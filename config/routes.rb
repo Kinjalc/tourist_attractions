@@ -11,7 +11,8 @@ resources :cities do
 end
 
 
-  match 'cities/tourist_attractions/nearby_attractions/:id' => 'tourist_attractions#nearby_attractions', via: [:get]
+  match 'cities/tourist_attractions/nearby_attractions/:id/:rad' => 'tourist_attractions#nearby_attractions', via: [:get]
+
 
   match '/tourist_attractions/:id' =>'reviews#index', via: [:get]
   match 'reviews/:id' => 'reviews#create', via: [:post]

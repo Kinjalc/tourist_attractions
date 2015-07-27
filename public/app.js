@@ -76,17 +76,38 @@ $(document).ready(function() {
         attachHandlerGetReviews();
       });
     });
+
+    // $("#attractions_dropdown").on("change", function(e) {
+    //   var attractionsId = $(this).val();
+    //   $.ajax({
+    //     type: 'GET',
+    //     url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
+    //   }).done(function(response) {
+    //     $("#attractions_radius").show();
+    //     $("#attractions_radius").html('');
+    //     response.filter(function(attr) {
+    //       //removes the attraction selected from the result list
+    //       return attr.id.toString() !== attractionsId;
+    //     }).forEach(function(attraction) {
+    //       var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
+    //       $("#attractions_radius").append(attractionRadius)
+    //     });
+    //   });
+    // });
+
     //to find the attractions in a particular radius
-    $("#attractions_dropdown").on("change", function(e) {
-      var attractionsId = $(this).val();
+    $("#get_radius_attractions").on("click", function(e) {
+      // $("#attractions_dropdown").on("change", function(e) {
+      var radius_search = $("#radius").val();
+      // var attractionsId = $(this).val();
+      var attractionsId = $("#attractions_dropdown :selected").val();
       $.ajax({
         type: 'GET',
-        url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
+        url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId + "/" + radius_search
       }).done(function(response) {
         $("#attractions_radius").show();
         $("#attractions_radius").html('');
         response.filter(function(attr) {
-          //removes the attraction selected from the result list
           return attr.id.toString() !== attractionsId;
         }).forEach(function(attraction) {
           var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"

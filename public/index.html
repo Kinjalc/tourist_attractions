@@ -59,8 +59,15 @@
       </div> -->
 
       <div class="text-center">
-      <span > Find attractions within 2 miles of : </span>
+      <span > Find attractions within miles of :
+      <input id="radius" type="text" value="" placeholder="miles">
+      </span>
       <select id ="attractions_dropdown">
+        <option value=0 >Select the attraction</option>
+      </select>
+      <button  id="get_radius_attractions">Get Attractions</button>
+      <div id = "attractions_radius"></div>
+      </div>
 
       </select>
       <div id = "attractions_radius"></div>
