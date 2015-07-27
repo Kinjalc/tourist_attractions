@@ -206,6 +206,7 @@ $(document).ready(function() {
     $(".attraction_wrapper").on("click", function() {
       var attraction_id = $(this).data('id');
       $('.attraction_description[data-id="' + attraction_id + '"]').toggle();
+      return false;
     });
   };
 
