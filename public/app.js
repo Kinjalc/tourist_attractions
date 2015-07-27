@@ -22,7 +22,7 @@ $(document).ready(function() {
   function marker(map, pos) {
     var marker = new google.maps.Marker({
       position: pos,
-      map: maps
+      map: map
       // zoom: 14
     });
     map.panTo(pos)
