@@ -15,20 +15,27 @@ $(document).ready(function() {
       },
       zoom: 12
     };
-    markersArray.push(marker);
     map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
   };
 
 
-  function marker(map, pos) {
+  function marker(map, pos, name) {
+    var contentString = '<div id="content">' +
+      '<p id="firstHeading">' + name + '</p>' + '</div>'
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
     var marker = new google.maps.Marker({
       position: pos,
       map: map
-      // zoom: 14
     });
-    map.panTo(pos)
-  };
+    markersArray.push(marker);
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map, marker)
+    });
+    map.panTo(pos);
+  }
 
   google.maps.event.addDomListener(window, 'load', initialize);
   //Gets the list of cities from database
@@ -132,7 +139,7 @@ $(document).ready(function() {
         }
         response.forEach(function(attraction) {
           position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
-          marker(map, position);
+          marker(map, position, attraction.name);
           if (attraction.id.toString() !== attractionsId) {
             var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
             $("#attractions_radius").append(attractionRadius);
