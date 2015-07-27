@@ -5,6 +5,7 @@ $(document).ready(function() {
   $("#welcome").html(name);
   var map;
   var position;
+  var markersArray = [];
 
   function initialize() {
     var mapOptions = {
@@ -14,6 +15,7 @@ $(document).ready(function() {
       },
       zoom: 12
     };
+    markersArray.push(marker);
     map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
   };
@@ -125,6 +127,9 @@ $(document).ready(function() {
       }).done(function(response) {
         $("#attractions_radius").show();
         $("#attractions_radius").html('');
+        while (markersArray[0]) {
+          markersArray.pop().setMap(null);
+        }
         response.forEach(function(attraction) {
           position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
           marker(map, position);
