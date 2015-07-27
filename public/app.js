@@ -21,11 +21,11 @@ $(document).ready(function() {
 
   function marker(map, pos) {
     var marker = new google.maps.Marker({
-      position: position,
+      position: pos,
       map: map,
       // zoom: 14
     });
-    map.panTo(position)
+    map.panTo(pos)
   };
 
 
