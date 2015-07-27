@@ -17,18 +17,18 @@ $(document).ready(function() {
     map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
   };
-  google.maps.event.addDomListener(window, 'load', initialize);
+
 
   function marker(map, pos) {
     var marker = new google.maps.Marker({
       position: pos,
-      map: map,
+      map: maps
       // zoom: 14
     });
     map.panTo(pos)
   };
 
-
+  google.maps.event.addDomListener(window, 'load', initialize);
   //Gets the list of cities from database
   $.ajax({
     type: 'GET',
@@ -130,7 +130,7 @@ $(document).ready(function() {
           marker(map, position);
           if (attraction.id.toString() !== attractionsId) {
             var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
-            $("#attractions_radius").append(attractionRadius)
+            $("#attractions_radius").append(attractionRadius);
           }
         });
       });
