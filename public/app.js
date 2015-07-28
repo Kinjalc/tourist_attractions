@@ -37,7 +37,14 @@ $(document).ready(function() {
     map.panTo(pos);
   }
 
+  function removeMarkers() {
+    while (markersArray[0]) {
+      markersArray.pop().setMap(null);
+    }
+  };
+
   google.maps.event.addDomListener(window, 'load', initialize);
+
   //Gets the list of cities from database
   $.ajax({
     type: 'GET',
@@ -87,8 +94,11 @@ $(document).ready(function() {
         url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
       }).done(function(response) {
         var attractionsContent = "<h4>" + categoryName + "</h4>";
+        removeMarkers();
         response.forEach(function(attraction) {
           if (attraction.category.includes(categoryName)) {
+            position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
+            marker(map, position, attraction.name);
             var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><a href='#'>" + attraction.name + "</a></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
             attractionsContent += attractions;
           };
@@ -134,9 +144,7 @@ $(document).ready(function() {
       }).done(function(response) {
         $("#attractions_radius").show();
         $("#attractions_radius").html('');
-        while (markersArray[0]) {
-          markersArray.pop().setMap(null);
-        }
+        removeMarkers();
         response.forEach(function(attraction) {
           position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
           marker(map, position, attraction.name);
