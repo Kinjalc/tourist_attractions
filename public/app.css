@@ -3,7 +3,7 @@ header {
   background-size: cover;
   background-position: center;
   text-align: center;
-  height: 300px;
+  height: 400px;
 }
 
 h1{
@@ -14,6 +14,7 @@ padding-top: 200px;
  border: 1px solid #CCC;
  height: 50px;
  font-size: 20px;
+ color:black;
 }
 .user_login{
 text-align: left;
@@ -28,9 +29,12 @@ margin-top: 2em;
   margin-bottom: 2em;
 }
 
-#categoryResults h4{
-  color: #d8222c;
+/*#categoryResults h4 {
+
+  padding-left: 1em;
 }
+*/
+
 
 .btn-group{
   text-align: center;
@@ -41,8 +45,40 @@ margin-top: 2em;
   margin-bottom: 2em;
 }
 
+
 .container{
   text-align: center;
+}
+
+/*.intro{
+  border-style: solid;
+  border-color: #D3D3D3;
+  padding: 1em;
+  margin: 4em 1em 2em 1em;
+  background-color: black;
+  color: white;
+}*/
+.intro {
+  border-style: solid;
+  border-color: #D3D3D3;
+  padding: 1em;
+  /* margin: 4em 1em 2em 1em; */
+  margin-top: 1em;
+  margin-bottom: 2em;
+  background-color: rgb(165, 165, 165);
+  color: white;
+}
+
+#city_description {
+  color: white;
+  padding-bottom: 2em;
+  margin: 4em 1em 2em 1em;
+}
+.selected_city {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  background-color: black;
+  background-color: rgb(165, 165, 165);
 }
 
 #attractions_radius{
@@ -61,11 +97,77 @@ margin-top: 2em;
 .mbottom1 {
   margin-bottom: 1em;
 }
+
 #map-canvas {
-  height: 400px;
-  margin-top: 5em;
+  height: 600px;
+  border-style: solid;
+  border-color: #D3D3D3;
+
+
+}
+.categories_button {
+/*margin-top: 2em;
+margin-bottom: 2em;
+margin-left: 2em;*/
+margin: 2em 2em 2em 2em;
+}
+
+.contain{
+  margin: 1em 1em 1em 1em;
+}
+
+.btn-group{
+  padding:2em;
+}
+
+.categories{
+  border-style: solid;
+  border-color: #D3D3D3;
+  margin-left:2em;
+}
+
+.att_rad{
+  border-style: solid;
+  border-color: #D3D3D3;
+  background-color: #f3f48a;
+  padding:2em;
+}
+.attraction_description {
+  border-style: solid;
+  border-color: #D3D3D3;
+  padding: 1em;
+}
+.description{
+  margin-left:3em;
+  margin-right:2em;
+}
+.attraction_wrapper{
+  background-color: #CDD6E5;
+  border-style: solid;
+  border-color: #D3D3D3;
+}
+
+.eachAttrHeader {
+  padding: 1em;
+}
+
+.eachAttrHeader a {
+  font-size: 18px;
+   padding-left: 2em;
+}
+.eachAttrRating{
+  padding: 1em;
+}
+.catResults{
+  padding-right: 0px; !important
+  padding-left: 0px; !important
 
 }
 
-
+.col-md-5.description{
+  border-style: solid;
+  border-color: #D3D3D3;
+  /*padding-right: 0px; !important
+  padding-left: 0px; !important*/
+}
 

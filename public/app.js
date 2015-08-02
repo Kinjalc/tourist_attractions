@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  $('.login_user').hide();
-  $('.register').hide();
+  // $('.login_user').hide();
+  // $('.register').hide();
   var name = "welcome " + localStorage.name;
   $("#welcome").html(name);
   var map;
@@ -60,7 +60,6 @@ $(document).ready(function() {
     var cityId = $(this).val();
     $("#categoryResults").hide();
     $("#attractions_radius").hide();
-    var cityId = $(this).val();
     //get the selected city details
     $.ajax({
       type: 'GET',
@@ -75,39 +74,38 @@ $(document).ready(function() {
       type: 'GET',
       url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
     }).done(function(response) {
+      var attractionDropdown = "<option value=0 >Select your attraction</option>"
       response.forEach(function(attraction) {
-        var attractionDropdown = "<option value=0 >Select your attraction</option>"
-        response.forEach(function(attraction) {
-          var attractionHeader = "<option value ='" + attraction.id + "'>" + attraction.name + "</option>"
-          attractionDropdown += attractionHeader;
-        });
-        $("#attractions_dropdown").html(attractionDropdown)
+        var attractionHeader = "<option value ='" + attraction.id + "'>" + attraction.name + "</option>"
+        attractionDropdown += attractionHeader;
       });
+      $("#attractions_dropdown").html(attractionDropdown)
     });
     //get attractions for chosen category
     $(".categories_button").on("click", function(e) {
-      $("#categoryResults").show();
       var cityId = $(".selected_city").attr('id');
       var categoryName = ($(this)).attr('id');
+      var categoryType = $($(this)).data('type');
       $.ajax({
         type: 'GET',
         url: "https://salty-fortress-4270.herokuapp.com/cities/" + cityId + "/tourist_attractions"
       }).done(function(response) {
-        var attractionsContent = "<h4>" + categoryName + "</h4>";
+        $("#categoryResults").show();
+        var attractionsContent = "<h3>" + categoryType + "</h3>";
         removeMarkers();
         response.forEach(function(attraction) {
           if (attraction.category.includes(categoryName)) {
             position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
             marker(map, position, attraction.name);
-            var attractions = "<div class='container'><div class='attraction_wrapper' data-id = '" + attraction.id + "' ><h5><a href='#'>" + attraction.name + "</a></h5></div><div class='attraction_description' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class ='show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
+            var avgReview = attraction.reviews_average || "no reviews yet";
+
+            var attractions = "<div class='attraction_wrapper'  data-id = '" + attraction.id + "' ><div class='row'><div class='col-md-7 eachAttrHeader'><a href='#' >" + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Rating:" + avgReview + "</div></div></div><div class='attraction_description ' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='btn btn-primary post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='btn btn-primary text-center get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class =' show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
             attractionsContent += attractions;
           };
         });
         // };
-        //show the results in the categoryResults div
         $("#categoryResults").html(attractionsContent);
         showCityDescription();
-        //call the attachHandlerSubmitReview function once attraction results are displayed so the a click handler event can be attached to the DOM element which we created above
         attachHandlerSubmitReview();
         $(".attraction_description").hide();
         attachHandlerGetReviews();
@@ -146,16 +144,26 @@ $(document).ready(function() {
         $("#attractions_radius").html('');
         removeMarkers();
         response.forEach(function(attraction) {
+          var avgReview = attraction.reviews_average || "no reviews yet";
           position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
           marker(map, position, attraction.name);
           if (attraction.id.toString() !== attractionsId) {
-            var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
-            $("#attractions_radius").append(attractionRadius);
+            var attractions = "<div class='attraction_wrapper'  data-id = '" + attraction.id + "' ><h4><a href='#'>" + attraction.name + "</a> Rating:" + avgReview + "</h4></div><div class='attraction_description ' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='btn btn-primary post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='btn btn-primary text-center get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class =' show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
+            attractionsContent += attractions;
+
           }
+
         });
+        $("#categoryResults").html(attractionsContent);
+        showCityDescription();
+        attachHandlerSubmitReview();
+        $(".attraction_description").hide();
+        attachHandlerGetReviews();
       });
     });
+    // });
   });
+
 
 
   /// attaches click handler to the submit review button
@@ -185,7 +193,11 @@ $(document).ready(function() {
           alert("please login");
         });
       } else {
-        alert("please enter a valid rating from 0 to 5")
+        if (rating <= 5) {
+          alert("please login")
+        } else {
+          alert("please enter a valid rating from 0 to 5")
+        }
       };
     });
   };
@@ -199,8 +211,8 @@ $(document).ready(function() {
       }).done(function(response) {
         var reviews = '';
         response.forEach(function(review) {
-          var attrReview = "<div id ='each_review'><p>" +
-            review.user_name + ":'" + review.comments + "'  rating:" + review.rating + "</p></div>"
+          var attrReview = "<div id ='each_review'><div class='row'> <div class='col-md-2'>" +
+            review.user_name + ":</div> <div class='col-md-6'>'" + review.comments + "'</div><div class='col-md- 3'> rating:" + review.rating + "/5</div></div></div>"
           reviews += attrReview;
         })
         $('#show_reviews_' + touristAttrId).html(reviews);
@@ -273,13 +285,17 @@ $(document).ready(function() {
     });
   });
   //To hide and show the login and register fields
-  $("#login_button").on("click", function() {
-    $('.register').hide();
-    $(".login_user").toggle();
-  });
+  // $("#login_button").on("click", function() {
+  //   $('.register').hide();
+  //   $(".login_user").toggle();
+  // });
 
-  $("#register_button").on("click", function() {
-    $('.login_user').hide();
-    $(".register").toggle()
+  // $("#register_button").on("click", function() {
+  //   $('.login_user').hide();
+  //   $(".register").toggle()
+  // });
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
   });
 });
