@@ -20,7 +20,7 @@ $(document).ready(function() {
   };
 
 
-  function marker(map, pos, name) {
+  function marker(map, pos, name, main) {
     var contentString = '<div id="content">' +
       '<p id="firstHeading">' + name + '</p>' + '</div>'
     var infowindow = new google.maps.InfoWindow({
@@ -31,9 +31,14 @@ $(document).ready(function() {
       map: map
     });
     markersArray.push(marker);
-    google.maps.event.addListener(marker, 'click', function() {
+
+    google.maps.event.addListener(marker, 'mouseover', function() {
       infowindow.open(map, marker)
     });
+
+    if (main === "main") {
+      infowindow.open(map, marker)
+    }
     map.panTo(pos);
   }
 
@@ -96,7 +101,7 @@ $(document).ready(function() {
         response.forEach(function(attraction) {
           if (attraction.category.includes(categoryName)) {
             position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
-            marker(map, position, attraction.name);
+            marker(map, position, attraction.name, "none");
             var avgReview = attraction.reviews_average || "no reviews yet";
 
             var attractions = "<div class='attraction_wrapper'  data-id = '" + attraction.id + "' ><div class='row'><div class='col-md-7 eachAttrHeader'><a href='#' >" + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Rating:" + avgReview + "</div></div></div><div class='attraction_description ' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='btn btn-primary post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='btn btn-primary text-center get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class =' show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
@@ -112,23 +117,7 @@ $(document).ready(function() {
       });
     });
 
-    // $("#attractions_dropdown").on("change", function(e) {
-    //   var attractionsId = $(this).val();
-    //   $.ajax({
-    //     type: 'GET',
-    //     url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId
-    //   }).done(function(response) {
-    //     $("#attractions_radius").show();
-    //     $("#attractions_radius").html('');
-    //     response.filter(function(attr) {
-    //       //removes the attraction selected from the result list
-    //       return attr.id.toString() !== attractionsId;
-    //     }).forEach(function(attraction) {
-    //       var attractionRadius = "<h5><b>" + attraction.name + "</b></h5>"
-    //       $("#attractions_radius").append(attractionRadius)
-    //     });
-    //   });
-    // });
+
 
     //to find the attractions in a particular radius
     $("#get_radius_attractions").on("click", function(e) {
@@ -140,17 +129,21 @@ $(document).ready(function() {
         type: 'GET',
         url: "https://salty-fortress-4270.herokuapp.com/cities/tourist_attractions/nearby_attractions/" + attractionsId + "/" + radius_search
       }).done(function(response) {
-        $("#attractions_radius").show();
-        $("#attractions_radius").html('');
+        var attractionsContent = "<h3>Radius search result</h3>";;
         removeMarkers();
+        $("#categoryResults").show();
+
         response.forEach(function(attraction) {
           var avgReview = attraction.reviews_average || "no reviews yet";
-          position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
-          marker(map, position, attraction.name);
-          if (attraction.id.toString() !== attractionsId) {
-            var attractions = "<div class='attraction_wrapper'  data-id = '" + attraction.id + "' ><h4><a href='#'>" + attraction.name + "</a> Rating:" + avgReview + "</h4></div><div class='attraction_description ' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><input type='text' class='comments'data-val='" + attraction.id + "' value='' placeholder='put your comments here'>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='btn btn-primary post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='btn btn-primary text-center get_comments' data-attrid='" + attraction.id + "'>Show Reviews</button><div class =' show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
-            attractionsContent += attractions;
 
+          if (attraction.id.toString() !== attractionsId) {
+            position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
+            marker(map, position, attraction.name, "none");
+            var attractions = "<div class='attraction_wrapper'  data-id = '" + attraction.id + "' ><div class='row'><div class='col-md-7 eachAttrHeader'><a href='#' >" + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Rating:" + avgReview + "</div></div></div><div class='attraction_description ' data-id='" + attraction.id + "' >" + attraction.description + "</br><form class='post mtop1 mbottom1'><textarea rows='4' class='form-control comments' data-val='" + attraction.id + "' value='' placeholder='Enter your review'></textarea>ratings:<input type='text' class='rating' data-val='" + attraction.id + "' value=''>/5<button type='button' class='btn btn-primary post_submit' data-attraction = '" + attraction.id + "'>submit</button></form><button type='button' class='btn btn-primary text-center get_comments' id='show_reviews_button' data-attrid='" + attraction.id + "'>Show Reviews</button><div class =' show_reviews' id='show_reviews_" + attraction.id + "'></div></div></div>"
+            attractionsContent += attractions;
+          } else {
+            position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
+            marker(map, position, attraction.name, "main");
           }
 
         });

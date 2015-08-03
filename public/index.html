@@ -19,6 +19,9 @@
       </header>
 
       <div class="contain">
+
+
+        <div class="col-md-12 text-center intro">
         <div class="row">
           <div class="user_login">
             <div class="col-md-1 col-md-offset-10 login">
@@ -72,8 +75,6 @@
             </div>
           </div>
         </div>
-
-        <div class="col-md-12 text-center intro">
           <div class="col-md-8 col-md-offset-2 text-center intro_div">
             <h3>Welcome to Travelogue!</h3>
             <div class="abt">
@@ -87,35 +88,18 @@
               </select>
           </div>
           <div class="col-md-12 selected_city text-center">
-            <div id="city_description">Select your destination from the above dropdown!</div>
+            <div id="city_description"></div>
           </div>
         </div>
-        <!-- <div class="col-md-12 text-center city_intro text-center">
-          <select id ="cities_dropdown">
-              <option value=0 >Select your city</option>
-            </select>
-
-
-        </div>
-        <div class="col-md-12 selected_city text-center">
-          <div id="city_description">Select your destination from the above dropdown!</div>
-        </div> -->
 
           <div class="row">
             <div class="col-md-2 text-left categories">
-              <div class="btn-group text-left">
-                  <button class ="btn btn-primary categories_button" id="" data-type="All Attractions">All  attractions</button>
-                  <button class ="btn btn-primary categories_button" id="landmark" data-type="Landmark">Landmark</button>
-                  <button class ="btn btn-primary categories_button" id="museum" data-type="Museum">Museum</button>
-                  <button class ="btn btn-primary categories_button" id="skyline" data-type="Skyline">Skyline</button>
-                  <button class ="btn btn-primary categories_button" id="entertainment" data-type="Entertainment">Entertainment</button>
-                  <button class ="btn btn-primary categories_button" id="architecture" data-type="Architecture">Architecture</button>
-              </div>
               <div class = "att_rad">
                   <h6> Find other attractions in the radius</h6>
                   <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1" > Radius<br/>(miles) : </span>
+                    <span class="input-group-addon radius_span" id="basic-addon1" > Radius (miles) :
                     <input id="radius" type="text" value="" placeholder="Enter miles" class="form-control" aria-describedby="basic-addon1" >
+                    </span>
                   </div>
 
                 <div>
@@ -124,9 +108,18 @@
                   </select>
                 </div>
                 <div >
-                  <button class = "btn btn-primary" id="get_radius_attractions">Get Attractions</button>
+                  <button class = "btn" id="get_radius_attractions">Get Attractions</button>
                 </div>
               </div>
+              <div class="btn-group text-left">
+                  <button class ="btn  categories_button" id="" data-type="All Attractions">All  attractions</button>
+                  <button class ="btn  categories_button" id="landmark" data-type="Landmark">Landmark</button>
+                  <button class ="btn  categories_button" id="museum" data-type="Museum">Museum</button>
+                  <button class ="btn  categories_button" id="skyline" data-type="Skyline">Skyline</button>
+                  <button class ="btn  categories_button" id="entertainment" data-type="Entertainment">Entertainment</button>
+                  <button class ="btn  categories_button" id="architecture" data-type="Architecture">Architecture</button>
+              </div>
+
               </div>
 
             <div class="col-md-5 description">

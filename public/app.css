@@ -22,29 +22,17 @@ margin-top: 2em;
 }
 
 #city_description h3{
-    color: #d8222c;
+      color: #E86F4C;
 }
 
 #city_description h5{
   margin-bottom: 2em;
 }
 
-/*#categoryResults h4 {
-
-  padding-left: 1em;
-}
-*/
-
 
 .btn-group{
   text-align: center;
 }
-
-.selected_city {
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-
 
 .container{
   text-align: center;
@@ -59,27 +47,25 @@ margin-top: 2em;
   color: white;
 }*/
 .intro {
-  border-style: solid;
-  border-color: #D3D3D3;
+  border: 1px solid #D3D3D3;
   padding: 1em;
   /* margin: 4em 1em 2em 1em; */
   margin-top: 1em;
   margin-bottom: 2em;
-  background-color: rgb(165, 165, 165);
-  color: white;
+  background-color: #F2F2F2;
+  color: black;
 }
 
 #city_description {
-  color: white;
+  /* color: #E86F4C;*/
   padding-bottom: 2em;
   margin: 4em 1em 2em 1em;
 }
-.selected_city {
+/*.selected_city {
   margin-top: 2em;
   margin-bottom: 2em;
-  background-color: black;
-  background-color: rgb(165, 165, 165);
-}
+
+}*/
 
 #attractions_radius{
   width: 350px;
@@ -100,8 +86,7 @@ margin-top: 2em;
 
 #map-canvas {
   height: 600px;
-  border-style: solid;
-  border-color: #D3D3D3;
+ border: 1px solid #D3D3D3;
 
 
 }
@@ -121,20 +106,20 @@ margin: 2em 2em 2em 2em;
 }
 
 .categories{
-  border-style: solid;
-  border-color: #D3D3D3;
+  /*border-style: solid;
+  border-color: #D3D3D3;*/
+  border: 1px solid #D3D3D3;
   margin-left:2em;
 }
 
-.att_rad{
-  border-style: solid;
-  border-color: #D3D3D3;
-  background-color: #f3f48a;
-  padding:2em;
+.att_rad {
+  border: 1px solid #D3D3D3;
+  background-color: #F2F2F2;
+  padding: 1em;
+  margin-top: 1em;
 }
 .attraction_description {
-  border-style: solid;
-  border-color: #D3D3D3;
+  border: 1px solid #D3D3D3;
   padding: 1em;
 }
 .description{
@@ -142,9 +127,8 @@ margin: 2em 2em 2em 2em;
   margin-right:2em;
 }
 .attraction_wrapper{
-  background-color: #CDD6E5;
-  border-style: solid;
-  border-color: #D3D3D3;
+  background-color: #F2F2F2;
+  border: 1px solid #D3D3D3;
 }
 
 .eachAttrHeader {
@@ -153,21 +137,55 @@ margin: 2em 2em 2em 2em;
 
 .eachAttrHeader a {
   font-size: 18px;
-   padding-left: 2em;
+  padding-left: 2em;
+  color:#E86F4C;
 }
 .eachAttrRating{
   padding: 1em;
 }
-.catResults{
+./*catResults{
   padding-right: 0px; !important
   padding-left: 0px; !important
 
 }
-
+*/
 .col-md-5.description{
-  border-style: solid;
-  border-color: #D3D3D3;
+  border: 1px solid #D3D3D3;
   /*padding-right: 0px; !important
   padding-left: 0px; !important*/
 }
 
+.categories .btn{
+  background-color:#E86F4C !important;
+  width: 150px ;
+  height: 50px;
+  border: 1px solid #D3D3D3 !important;
+  color: white;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.description .btn-primary{
+  background-color: #5bc0de !important;
+  border-color: #46b8da;
+}
+
+#show_reviews_button{
+  background-color:#E86F4C !important;
+  border: 1px solid #D3D3D3 !important;
+}
+
+.show_reviews{
+  padding: 2em;
+  color: rgb(91, 192, 222);
+}
+.radius_span {
+  background-color: #a3a0a0 !important;
+}
+#attractions_dropdown {
+  margin-top: 1em;
+}
+
+.col-md-12.text-center.city_intro.text-center {
+  margin-top: 4em;
+}
