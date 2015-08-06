@@ -1,8 +1,5 @@
 $(document).ready(function() {
-  // $('.login_user').hide();
-  // $('.register').hide();
-  var name = "welcome " + localStorage.name;
-  $("#welcome").html(name);
+
   var map;
   var position;
   var markersArray = [];
@@ -60,6 +57,12 @@ $(document).ready(function() {
       $("#cities_dropdown").append(cityHeader)
     });
   });
+  //if user clicks catergories btn without selecting a city
+  if ($("#cities_dropdown").val() === "0") {
+    $(".categories_button").on('click', function(e) {
+      alert("Please select a city!")
+    })
+  }
   //select the city from the dropdown
   $("#cities_dropdown").on("change", function(e) {
     var cityId = $(this).val();
@@ -240,16 +243,44 @@ $(document).ready(function() {
       localStorage.setItem('userId', data.id);
       localStorage.setItem('name', data.name);
 
-      var name = "welcome " + data['name'];
-      $("#welcome").html(name);
-      console.log(data);
+      var name = "Welcome " + data['name'];
+      alert(name);
+      userSuccess(name);
+      // $(".user_login").hide();
+
+      // $("#welcome").html(name);
+      hideOnCloseBtn();
+      //console.log(data);
     }).fail(function(jqxhr, textStatus, errorThrown) {
       alert("login failed!")
-      $("#welcome").html(data.textStatus);
-      console.log(textStatus);
-      console.log(errorThrown);
+
+      //console.log(textStatus);
+      //console.log(errorThrown);
     });
   });
+
+  function userSuccess(name) {
+    var addLogout = "<div class='row'><div class='welcomeMsg'>" + name + "</div><button type='button' class='btn btn-info btn-md' id='logout'>Logout</button></div>"
+    $(".loggedIn").html(addLogout);
+    attachHandlerLogout();
+  }
+  //attachies handler and action to logout button
+  function attachHandlerLogout() {
+    $("#logout").on("click", function() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('name');
+      $(".user_login").show();
+      $(".loggedIn").html("");
+    })
+
+  }
+  //for the login/register modal on clicking "close" if the user has been logged in do this.
+  function hideOnCloseBtn() {
+    $(".closebtn").on('click', function() {
+      $(".user_login").hide();
+    })
+  }
 
 
   $('#post-token').on('click', function() {
@@ -270,8 +301,14 @@ $(document).ready(function() {
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.id);
       localStorage.setItem('name', data.name);
-      var name = "welcome " + data['name'];
-      $("#welcome").html(name);
+      var name = "Welcome " + data['name'];
+      alert(name);
+      userSuccess(name);
+      // $(".user_login").hide();
+
+      // $("#welcome").html(name);
+      hideOnCloseBtn();
+      console.log(data);
     }).fail(function(jqxhr, textStatus, errorThrown) {
       console.log(textStatus);
       console.log(errorThrown);
