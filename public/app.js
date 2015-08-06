@@ -58,11 +58,14 @@ $(document).ready(function() {
     });
   });
   //if user clicks catergories btn without selecting a city
-  if ($("#cities_dropdown").val() === "0") {
-    $(".categories_button").on('click', function(e) {
+
+  $(".categories_button").on('click', function(e) {
+    if ($("#cities_dropdown").val() === "0") {
       alert("Please select a city!")
-    })
-  }
+    }
+
+  });
+
   //select the city from the dropdown
   $("#cities_dropdown").on("change", function(e) {
     var cityId = $(this).val();
