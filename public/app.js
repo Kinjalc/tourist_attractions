@@ -255,7 +255,7 @@ $(document).ready(function() {
       hideOnCloseBtn();
       //console.log(data);
     }).fail(function(jqxhr, textStatus, errorThrown) {
-      alert("login failed!")
+      alert("User name and password does not match!");
 
       //console.log(textStatus);
       //console.log(errorThrown);
@@ -315,6 +315,7 @@ $(document).ready(function() {
     }).fail(function(jqxhr, textStatus, errorThrown) {
       console.log(textStatus);
       console.log(errorThrown);
+      alert(jqxhr.responseText);
     });
   });
   //To hide and show the login and register fields

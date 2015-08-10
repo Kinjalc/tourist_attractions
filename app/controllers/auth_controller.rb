@@ -15,7 +15,7 @@ class AuthController < ApplicationController
     if user.valid?
       render json: { token: user.token, name: user.name, id: user.id}
     else
-      head :bad_request
+      render status: :bad_request, text: user.errors.full_messages.first
     end
   end
 
