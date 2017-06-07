@@ -1,9 +1,10 @@
-h1, h2, h3, h4, h5 {
+body{
+  font-family: "Roboto";
+}
+
+ h1, h2, h3, h4, h5 {
   font-family: "Lato" !important;
   font-weight: 300 !important;
-}
-body{
-  font-family: "Roboto" !important;
 }
 
 header {
@@ -101,15 +102,15 @@ div.search-filter.row.col-sm-12 {
 
 #map-canvas {
   height: 600px;
- border: 1px solid #D3D3D3;
-
-
+  border: 1px solid #D3D3D3;
+  margin-top: 55px;
 }
+
 .categories_button {
 /*margin-top: 2em;
 margin-bottom: 2em;
 margin-left: 2em;*/
-margin: 2em 2em 2em 2em;
+  margin: 2em 2em 2em 2em;
 }
 
 .contain{

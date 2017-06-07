@@ -83,10 +83,10 @@ $(document).ready(function() {
   function attractionTemplate(attraction){
     position = new google.maps.LatLng(attraction.latitude, attraction.longitude);
     marker(map, position, attraction.name, "none");
-    var avgReview = attraction.reviews_average || "no reviews yet";
+    var avgReview = attraction.reviews_average || "Write the first review";
     return ("<div class='attraction_wrapper'  data-id = '" +
       attraction.id + "' ><div class='row'><div class='col-md-7 eachAttrHeader'><a href='#' >"
-      + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Rating:"
+      + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Avg Rating:"
       + avgReview + "</div></div></div><div class='attraction_description ' data-id='"
       + attraction.id + "' >" + attraction.description
       + "</br><form class='post mtop1 mbottom1'><textarea rows='4' class='form-control comments' data-val='"
@@ -224,9 +224,9 @@ $(document).ready(function() {
         });
       } else {
         if (rating <= 5) {
-          alert("please enter a valid rating from 0 to 5");
+          alert("Please log in");
         } else {
-          alert("please login"); 
+          alert("Enter a valid rating between 1 to 5"); 
         }
       };
     });
@@ -242,7 +242,7 @@ $(document).ready(function() {
         var reviews = '';
         response.forEach(function(review) {
           var attrReview = "<div id ='each_review'><div class='row'> <div class='col-md-2'>" +
-            review.user_name + ":</div> <div class='col-md-6'>'" + review.comments + "'</div><div class='col-md- 3'> rating:" + review.rating + "/5</div></div></div>"
+            review.user_name + ":</div> <div class='col-md-6'>'" + review.comments + "'</div><div class='col-md- 3'> Avg rating:" + review.rating + "/5</div></div></div>"
           reviews += attrReview;
         })
         $('#show_reviews_' + touristAttrId).html(reviews);
