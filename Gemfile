@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 #serializers
 gem 'active_model_serializers'
 
+gem 'rails_12factor'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

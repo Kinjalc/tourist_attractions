@@ -3,8 +3,8 @@ $(document).ready(function() {
   var map;
   var position;
   var markersArray = [];
-  var url = "https://salty-fortress-4270.herokuapp.com/cities"
-  // var url = "/cities/";
+  // var url = "https://salty-fortress-4270.herokuapp.com/cities"
+  var url = "/cities/";
 
   function initialize() {
     var mapOptions = {
