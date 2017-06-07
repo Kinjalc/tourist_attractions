@@ -20,11 +20,8 @@
       <header>
         <h1>TRAVELOGUE</h1>
       </header>
-
       <div class="contain">
-
-
-        <div class="col-md-12 text-center intro">
+        <div class="col-sm-12 text-center intro">
         <div class="row">
           <div class="col-md-2 loggedIn"></div>
           <div class="user_login">
@@ -41,7 +38,6 @@
                       <div class="modal-body">
                         <input id="email" type="text" value="" placeholder="e-mail">
                         <input id="password" type="password" value="" placeholder="password">
-
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default closebtn" data-dismiss="modal">Close</button>
@@ -95,47 +91,44 @@
             <div id="city_description"></div>
           </div>
         </div>
-
-          <div class="row">
-            <div class="col-md-2 text-left categories">
-              <div class = "att_rad">
-                  <h6> Find other attractions in the radius</h6>
-                  <div class="input-group">
-                    <span class="input-group-addon radius_span" id="basic-addon1" > Radius (miles) :
-                    <input id="radius" type="text" value="" placeholder="Enter miles" class="form-control" aria-describedby="basic-addon1" >
-                    </span>
-                  </div>
-
-                <div>
-                  <select id ="attractions_dropdown" class="form-control">
-                    <option value=0 >Select the attraction</option>
-                  </select>
-                </div>
-                <div >
-                  <button class = "btn" id="get_radius_attractions">Get Attractions</button>
-                </div>
+        <div class="row col-sm-12">
+          <div class="col-sm-12 text-left categories">
+            <div class = "att_rad col-sm-6 col-sm-offset-3">
+              <h6> Find other attractions in the radius</h6>
+              <div class="input-group">
+                <span class="input-group-addon radius_span" id="basic-addon1" > Radius (miles) :
+                  <input id="radius" type="text" value="" placeholder="Enter miles" class="form-control" aria-describedby="basic-addon1" >
+                </span>
               </div>
-              <div class="btn-group text-left">
-                  <button class ="btn  categories_button" id="" data-type="All Attractions">All  attractions</button>
-                  <button class ="btn  categories_button" id="landmark" data-type="Landmark">Landmark</button>
-                  <button class ="btn  categories_button" id="museum" data-type="Museum">Museum</button>
-                  <button class ="btn  categories_button" id="skyline" data-type="Skyline">Skyline</button>
-                  <button class ="btn  categories_button" id="entertainment" data-type="Entertainment">Entertainment</button>
-                  <button class ="btn  categories_button" id="architecture" data-type="Architecture">Architecture</button>
+              <div>
+                <select id ="attractions_dropdown" class="form-control">
+                  <option value=0 >Select the attraction</option>
+                </select>
               </div>
-
+              <div class="margin-auto">
+                <button class = "btn" id="get_radius_attractions">Get Attractions</button>
               </div>
-
-            <div class="col-md-5 description">
-              <div class="col-md-12 catResults" id = "categoryResults">select the type of attractions you want to visit from the left column</div>
             </div>
-            <div class="col-md-4">
-              <div id="map-canvas"></div>
+            <div class="row col-sm-12 search-filter">
+              <div class="btn-group">
+                <button class ="btn  categories_button" id="landmark" data-type="Landmark">Landmark</button>
+                <button class ="btn  categories_button" id="museum" data-type="Museum">Museum</button>
+                <button class ="btn  categories_button" id="skyline" data-type="Skyline">Skyline</button>
+                <button class ="btn  categories_button" id="entertainment" data-type="Entertainment">Entertainment</button>
+                <button class ="btn  categories_button" id="architecture" data-type="Architecture">Architecture</button>
+              </div>
             </div>
           </div>
         </div>
-
-
+        <div class="row">
+          <div class="col-sm-6 description">
+            <div class="col-sm-12 catResults" id = "categoryResults">select the type of attractions you want to visit from the left column</div>
+          </div>
+          <div class="col-sm-5">
+            <div id="map-canvas"></div>
+          </div>
+        </div>
+      </div>
     <script type="text/javascript" src="app.js"></script>
 
   </body>

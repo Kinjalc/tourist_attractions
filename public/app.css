@@ -1,9 +1,9 @@
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-family: "Lato" !important;
-  font-weight: 300 !important;;
+  font-weight: 300 !important;
 }
 body{
-  font-family: "Roboto" !important;;
+  font-family: "Roboto" !important;
 }
 
 header {
@@ -30,7 +30,7 @@ margin-top: 2em;
 }
 
 #city_description h3{
-      color: #E86F4C;
+  color: #E86F4C;
 }
 
 #city_description h5{
@@ -39,31 +39,36 @@ margin-top: 2em;
   font-weight: 400 !important;
 }
 
+div.search-filter.row.col-sm-12 {
+  display: flex;
+}
 
-.btn-group{
+.btn-group {
   text-align: center;
+  margin: auto;
+  padding: 1em;
 }
 
 .container{
   text-align: center;
 }
 
-/*.intro{
-  border-style: solid;
-  border-color: #D3D3D3;
-  padding: 1em;
-  margin: 4em 1em 2em 1em;
-  background-color: black;
-  color: white;
-}*/
+.att_rad.col-sm-6 {
+  display: flex;
+  flex-direction: column;
+}
+
 .intro {
   border: 1px solid #D3D3D3;
   padding: 1em;
-  /* margin: 4em 1em 2em 1em; */
   margin-top: 1em;
   margin-bottom: 2em;
   background-color: #F2F2F2;
   color: black;
+}
+
+.margin-auto {
+  margin: auto;
 }
 
 #city_description {
@@ -112,7 +117,7 @@ margin: 2em 2em 2em 2em;
 }
 
 .btn-group{
-  padding:2em;
+  padding: 1em;
 }
 
 .categories{
@@ -172,7 +177,6 @@ margin: 2em 2em 2em 2em;
   border: 1px solid #D3D3D3 !important;
   color: white;
   margin-top: 1em;
-  margin-left: 1em;
 }
 
 .description .btn-primary{

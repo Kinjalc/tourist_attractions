@@ -2,6 +2,9 @@ class TouristAttractionsController < ApplicationController
   def index
     @city = City.find(params[:city_id])
     @tourist_attractions = @city.tourist_attractions
+    if params[:category]
+      @tourist_attractions = @tourist_attractions.where(category: params[:category])
+    end
     render json: @tourist_attractions
   end
 

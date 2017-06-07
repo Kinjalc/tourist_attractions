@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150620230407) do
 
   create_table "reviews", force: :cascade do |t|
     t.text    "comments"
-    t.integer "rating"
+    t.integer "rating",                null: false
     t.integer "user_id"
     t.integer "tourist_attraction_id"
   end
