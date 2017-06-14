@@ -78,7 +78,7 @@
           <div class="col-md-8 col-md-offset-2 text-center intro_div">
             <h3>Welcome to Travelogue!</h3>
             <div class="abt">
-              <p>Make your travel iternary planning easy! Do check out our <a href="#get_radius_attractions">radius search</a> which can help you find other attractions within a certain distance around the 'must-see' attraction of your choice!
+              <p>Make your travel iternary planning easy! Do check out our <a href="#radius_attractions">radius search</a> which can help you find other attractions within a certain distance around the 'must-see' attraction of your choice!
               </p>
             </div>
           </div>
@@ -93,10 +93,10 @@
         </div>
         <div class="row col-sm-12">
           <div class="col-sm-12 text-left categories">
-            <div class = "att_rad col-sm-6 col-sm-offset-3">
-              <h6> Find other attractions in the radius</h6>
-              <div class="input-group">
-                <span class="input-group-addon radius_span" id="basic-addon1" > Radius (miles) :
+            <div id="radius_attractions" class = "att_rad col-sm-6 col-sm-offset-3" >
+              <h4> Find other attractions in the radius</h4>
+              <div class="input-group" >
+                <span id="basic-addon1" class="input-group-addon radius_span" > Radius (miles) :
                   <input id="radius" type="text" value="" placeholder="Enter miles" class="form-control" aria-describedby="basic-addon1" >
                 </span>
               </div>
@@ -120,11 +120,11 @@
             </div>
           </div>
         </div>
-        <div class="row col-sm-12">
+        <div class="col-sm-12 background-color">
           <div class="col-sm-6 description">
             <div class="col-sm-12 catResults" id = "categoryResults">select the type of attractions you want to visit from the left column</div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div id="map-canvas"></div>
           </div>
         </div>

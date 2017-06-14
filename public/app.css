@@ -59,6 +59,10 @@ div.search-filter.row.col-sm-12 {
   flex-direction: column;
 }
 
+.background-color {
+  background-color: #F2F2F2;
+}
+
 .intro {
   border: 1px solid #D3D3D3;
   padding: 1em;
@@ -103,7 +107,14 @@ div.search-filter.row.col-sm-12 {
 #map-canvas {
   height: 600px;
   border: 1px solid #D3D3D3;
-  margin-top: 55px;
+}
+
+#map-canvas, #categoryResults {
+  margin-top: 5em;
+}
+
+#categoryResults > h3 {
+  margin-top: 0;
 }
 
 .categories_button {
@@ -122,9 +133,6 @@ margin-left: 2em;*/
 }
 
 .categories{
-  /*border-style: solid;
-  border-color: #D3D3D3;*/
-  border: 1px solid #D3D3D3;
   margin-left:2em;
 }
 
@@ -133,18 +141,26 @@ margin-left: 2em;*/
   background-color: #F2F2F2;
   padding: 1em;
   margin-top: 1em;
+  text-align: center;
 }
+
 .attraction_description {
   border: 1px solid #D3D3D3;
   padding: 1em;
 }
+
 .description{
   margin-left:3em;
   margin-right:2em;
 }
+
 .attraction_wrapper{
-  background-color: #F2F2F2;
+  background-color: #ffffff;
   border: 1px solid #D3D3D3;
+}
+
+.attraction_wrapper > .row {
+  padding: 1em;
 }
 
 .eachAttrHeader {
@@ -153,9 +169,13 @@ margin-left: 2em;*/
 
 .eachAttrHeader a {
   font-size: 18px;
-  padding-left: 2em;
   color:#E86F4C;
 }
+.eachAttrHeader a:hover{
+ color: #5bc0de;
+ text-decoration: none;
+}
+
 .eachAttrRating{
   padding: 1em;
 }
@@ -194,9 +214,14 @@ margin-left: 2em;*/
   padding: 2em;
   color: rgb(91, 192, 222);
 }
-.radius_span {
-  background-color: #a3a0a0 !important;
+
+#basic-addon1.radius_span {
+  background-color: #F2F2F2;
+  border: none;
+  padding: 0;
+  text-align: left;
 }
+
 #attractions_dropdown {
   margin-top: 1em;
 }
@@ -211,4 +236,9 @@ margin-left: 2em;*/
 .att_rad h6 {
   font-size: 15px !important;
   font-weight: 300 !important;
+}
+
+.abt a {
+  color: #5bc0de;
+  text-decoration: none;
 }
