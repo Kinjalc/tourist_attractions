@@ -86,7 +86,7 @@ $(document).ready(function() {
     var avgReview = attraction.reviews_average || "Write the first review";
     return ("<div class='attraction_wrapper'  data-id = '" +
       attraction.id + "' ><div class='row'><div class='col-md-7 eachAttrHeader'><a href='#' >"
-      + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Avg Rating:"
+      + attraction.name + "</a></div><div class='col-md-4 eachAttrRating'> Rating: "
       + avgReview + "</div></div></div><div class='attraction_description ' data-id='"
       + attraction.id + "' >" + attraction.description
       + "</br><form class='post mtop1 mbottom1'><textarea rows='4' class='form-control comments' data-val='"
